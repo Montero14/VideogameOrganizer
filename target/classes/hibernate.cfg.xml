@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="connection.url">jdbc:mysql://localhost/gamesdb</property>
+    <property name="connection.username">root</property>
+    <property name="connection.password"></property>
+    <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+    <property name="show_sql">true</property>
+	<property name="hbm2ddl.auto"></property>
+    <property name="hibernate.c3p0.timeout">1</property>
+    
+	<property name="hibernate.enable_lazy_load_no_trans">true</property>
+
+    <!-- Añadir aquí las anotaciones mapping -->
+    <mapping class="Model.Game"/>
+    <mapping class="Model.GameCube"/>
+    <mapping class="Model.GB"/>
+  	<mapping class="Model.GBC"/>
+    <mapping class="Model.MegaDrive"/>
+    <mapping class="Model.NDS"/>
+    <mapping class="Model.PC"/>
+  	<mapping class="Model.PS1"/>
+    <mapping class="Model.PS2"/>
+    <mapping class="Model.PSP"/>
+    <mapping class="Model.Wii"/>
+    
+   	</session-factory>
+</hibernate-configuration>
