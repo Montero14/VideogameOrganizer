@@ -28,7 +28,7 @@ public abstract class Game
 	@Column
 	private boolean handbook;
 	@Column
-	private boolean mine;
+	private boolean acquired;
 	@Column
 	private boolean secondHand;
 	@Column
@@ -40,23 +40,23 @@ public abstract class Game
 	public Game ()
 	{}
 	
-	public Game(int id, String title, boolean platinum, boolean handbook, boolean mine, boolean secondHand, double price)
+	public Game(int id, String title, boolean platinum, boolean handbook, boolean acquired, boolean secondHand, double price)
 	{
 		this.id = id;
 		this.title = title;
 		this.platinum = platinum;
 		this.handbook = handbook;
-		this.mine = mine;
+		this.acquired = acquired;
 		this.secondHand = secondHand;
 		this.price = price;
 	}
 	
-	public Game(int id, String title, boolean platinum, boolean mine)
+	public Game(int id, String title, boolean platinum, boolean acquired)
 	{
 		this.id = id;
 		this.title = title;
 		this.platinum = platinum;
-		this.mine = mine;
+		this.acquired = acquired;
 		this.secondHand = false;
 		this.price = 0;
 	}
@@ -87,12 +87,12 @@ public abstract class Game
 		this.platinum = platinum;
 	}
 
-	public boolean isMine() {
-		return mine;
+	public boolean isAcquired() {
+		return acquired;
 	}
 
-	public void setMine(boolean mine) {
-		this.mine = mine;
+	public void setAcquired(boolean acquired) {
+		this.acquired = acquired;
 	}
 
 	public boolean isSecondHand() {

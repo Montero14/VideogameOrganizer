@@ -15,14 +15,17 @@ import java.awt.event.ActionListener;
 
 
 
+
 import static javax.swing.GroupLayout.Alignment.LEADING;
 import static javax.swing.LayoutStyle.ComponentPlacement.RELATED;
+
 
 
 
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,40 +35,14 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
-  /*
-public class StartViewJF extends JFrame {
-     
-    private JDialog dialog = new TheDialog( this, "TheDialog", true );
-     
-    public StartViewJF() {
-        super( "StartViewJF" );
-        JButton b = new JButton( "Show Dialog" );
-        b.addActionListener( new ActionListener() {
-            public void actionPerformed( ActionEvent e ) {
-                dialog.setLocationRelativeTo( (JButton)e.getSource() );
-                dialog.pack();
-                dialog.setVisible( true );
-            }
-        } );
-        JPanel p = new JPanel();
-        p.add( b );
-        getContentPane().add( p );
-    }
-     
-    public static void main( String[] args ) {
-        JFrame f = new StartViewJF();
-        f.setDefaultCloseOperation( EXIT_ON_CLOSE );
-        f.setSize( 300, 300 );
-        f.setLocationRelativeTo( null );
-        f.setVisible( true );
-    }
-     */
+
 public  class InsertGame extends JDialog implements ActionListener
 {
          
-        private JLabel titulo;
+        private JLabel titleLabel, platinumLabel, handbookLabel, acquiredLabel, secondHandLabel, priceLabel;
         private JButton insertGameButton, abortButton;
-        private JTextField titleGame, tf2;
+        private JTextField titleGame, priceGame;
+        private JCheckBox platinumGame, handbookGame, acquiredGame, secondHandGame;
         
         public InsertGame( Frame owner, String tit, boolean modal ) 
         {
@@ -73,7 +50,7 @@ public  class InsertGame extends JDialog implements ActionListener
 
             //this.getContentPane().setLayout(new GroupLayout(this));
     		
-            this.setPreferredSize(new Dimension(400, 300));
+            this.setPreferredSize(new Dimension(600, 400));
             
             Container pane = getContentPane();
             GroupLayout gl = new GroupLayout(pane);
@@ -97,44 +74,91 @@ public  class InsertGame extends JDialog implements ActionListener
         {
         	
         	//Game's title
-        	 this.titulo = new JLabel("Titulo:");
-             this.titleGame = new JTextField(15);
+        	this.titleLabel = new JLabel("Titulo:");
+        	this.titleGame = new JTextField(15);
+        	//
+        	this.platinumLabel = new JLabel("Platinum:");
+        	this.platinumGame = new JCheckBox("");
+        	//
+        	this.handbookLabel = new JLabel("Manual:");
+        	this.handbookGame = new JCheckBox("");
+        	//
+        	this.acquiredLabel = new JLabel("Adquirido:");
+        	this.acquiredGame = new JCheckBox("");
+        	//
+        	this.secondHandLabel = new JLabel("Segunda mano:");
+        	this.secondHandGame = new JCheckBox("");
+        	//
+        	this.priceLabel = new JLabel("Precio:");
+        	this.priceGame = new JTextField(15);
+        	
+        	
+            //Insert button
+        	this.insertGameButton = new JButton( "Insertar juego" );
+        	this.insertGameButton.addActionListener( new ActionListener() {
+        		public void actionPerformed( ActionEvent e ) {
+        			System.out.println("Juego insertado");
+        		}
+        	} );
+        	this.abortButton = new JButton("Cancelar");
+        	this.abortButton.addActionListener(this);
+        
              
-             //Insert button
-             this.insertGameButton = new JButton( "Insertar juego" );
-             this.insertGameButton.addActionListener( new ActionListener() {
-                 public void actionPerformed( ActionEvent e ) {
-                 	System.out.println("Juego insertado");
-                 }
-             } );
-             this.abortButton = new JButton("Cancelar");
-             this.abortButton.addActionListener(this);
-            // this.add(abortButton);
-             //this.abortButton.addActionListener( new ActionListener() {
-             //    public void actionPerformed( ActionEvent e ) {
-             //   	
-             //    }
-             //} );
+             
+            gl.setHorizontalGroup(
+            		gl.createSequentialGroup()
+            			.addGroup(gl.createParallelGroup(GroupLayout.Alignment.LEADING)
+            					.addComponent(this.titleLabel)
+            					.addComponent(this.platinumLabel)
+            					.addComponent(this.acquiredLabel)
+            					.addComponent(this.secondHandLabel)
+            					.addComponent(this.priceLabel)
+            					.addComponent(this.insertGameButton))
+            			.addGroup(gl.createParallelGroup(GroupLayout.Alignment.LEADING)
+            					.addComponent(this.titleGame)
+            					.addComponent(this.platinumGame)
+            					.addComponent(this.acquiredGame)
+            					.addComponent(this.secondHandGame)
+            					.addComponent(this.priceGame)
+            					.addComponent(this.abortButton))
+            			
+            		);
+            gl.setVerticalGroup(
+            		gl.createSequentialGroup()
+            			.addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE) 
+            					.addComponent(this.titleLabel)
+            					.addComponent(this.titleGame))
+            		    .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)  
+            		           .addComponent(this.platinumLabel)
+            		           .addComponent(this.platinumGame))
+            		    .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)  
+            		           .addComponent(this.acquiredLabel)
+            		           .addComponent(this.acquiredGame))
+            		    .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)  
+            		           .addComponent(this.secondHandLabel)
+            		           .addComponent(this.secondHandGame))
+            		    .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)  
+            		           .addComponent(this.priceLabel)
+            		           .addComponent(this.priceGame))
+            		    .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)  
+            		           .addComponent(this.insertGameButton)
+            		           .addComponent(this.abortButton))
+            		);
             
+            /*
              gl.setHorizontalGroup(gl.createSequentialGroup()
-                     .addPreferredGap(RELATED,
-                             GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                     .addComponent(this.titulo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                 	        GroupLayout.PREFERRED_SIZE)
-                     .addComponent(this.titleGame, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                    	        GroupLayout.PREFERRED_SIZE)
+                     .addPreferredGap(RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                     .addComponent(this.titulo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                     .addComponent(this.titleGame, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                      .addComponent(this.insertGameButton)
                      .addComponent(this.abortButton)
              );
              
              gl.setVerticalGroup(gl.createSequentialGroup()
-                     .addPreferredGap(RELATED,
-                             GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                     .addPreferredGap(RELATED,GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                      .addGroup(gl.createParallelGroup()
-                    		 .addComponent(this.titulo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                         	        GroupLayout.PREFERRED_SIZE)
-                             .addComponent(this.titleGame, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                            	        GroupLayout.PREFERRED_SIZE)
+                    		 .addComponent(this.titulo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                             .addComponent(this.titleGame, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                              .addComponent(this.insertGameButton)
                              .addComponent(this.abortButton))
              );
@@ -142,8 +166,8 @@ public  class InsertGame extends JDialog implements ActionListener
              
           
              gl.linkSize(SwingConstants.HORIZONTAL, this.titulo, this.titleGame);
-             gl.linkSize(SwingConstants.HORIZONTAL, this.insertGameButton, this.abortButton);
-             
+             gl.linkSize(SwingConstants.VERTICAL, this.insertGameButton, this.abortButton);
+             */
         }
 
 		public void actionPerformed(ActionEvent e) {
